@@ -1,0 +1,10 @@
+{
+  "name": "demo",
+  "description": "Functions for Flutter Demo app",
+  "scripts": {
+    "b": "flutter pub run build_runner build --delete-conflicting-outputs",
+    "bw": "flutter pub run build_runner watch --delete-conflicting-outputs",
+    "e": "firebase emulators:start --only firestore,auth --import ../data --export-on-exit ../data"
+  },
+  "private": true
+}
