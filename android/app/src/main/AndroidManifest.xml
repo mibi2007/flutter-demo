@@ -67,7 +67,7 @@
             </intent-filter>
         </activity>
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyA8jJxxX4fAsR8W_GE2_clYKpcGTaewzXI"/>
+               android:value="@string/google_api_key"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
