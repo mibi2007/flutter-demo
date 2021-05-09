@@ -13,6 +13,7 @@ final signUpFormRepositoryProvider = Provider<AuthFacade>(
   (ref) => AuthFacade(_firebaseAuth, _googleSignIn, _facebookAuth),
 );
 
-final signUpFormNotifierProvider = StateNotifierProvider(
+final signUpFormNotifierProvider =
+    StateNotifierProvider<SignUpFormNotifier, SignUpFormState>(
   (ref) => SignUpFormNotifier(ref.watch(signUpFormRepositoryProvider)),
 );
