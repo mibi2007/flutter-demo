@@ -21,13 +21,16 @@ abstract class ValueFailure<T> with _$ValueFailure<T> {
   // }) = ListTooLong<T>;
   const factory ValueFailure.invalidEmail({
     @required T? failedValue,
+    String? reason,
   }) = InvalidEmail<T>;
   const factory ValueFailure.shortText({
     @required T? failedValue,
     @required int? minLength,
+    String? reason,
   }) = ShortText<T>;
   const factory ValueFailure.emptyValue({
     @required T? failedValue,
+    String? reason
   }) = EmptyValue<T>;
   const factory ValueFailure.multilines({
     @required T? failedValue,

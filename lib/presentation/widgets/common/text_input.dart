@@ -6,7 +6,7 @@ class TextInput extends StatelessWidget {
   final String? hintText;
   final bool? autoCorrect;
   final bool? obscureText;
-  final String? validator;
+  final String? Function(String?)? validator;
   final Function? onChanged;
 
   const TextInput({
@@ -39,7 +39,7 @@ class TextInput extends StatelessWidget {
       autocorrect: false,
       obscureText: obscureText!,
       onChanged: (_) => onChanged,
-      validator: (error) => validator,
+      validator: validator,
     );
   }
 }

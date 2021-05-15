@@ -34,43 +34,43 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       },
       passwordChanged: (e) async* {
         yield state.copyWith(
-          password: Password(e.passwordStr),
+          password: e.passwordStr,
           isSignedInOption: none(),
         );
       },
-      registerEmailPasswordPressed: (e) async* {
-        final isValidEmailAddress = state.emailAddress!.isValid();
-        final isValidPassword = state.password!.isValid();
-        Either<AuthFailure, Unit>? isRegistered;
+      // registerEmailPasswordPressed: (e) async* {
+      //   final isValidEmailAddress = state.emailAddress!.isValid();
+      //   final isValidPassword = state.password!.isNotEmpty;
+      //   Either<AuthFailure, Unit>? isRegistered;
 
-        if (isValidEmailAddress && isValidPassword){
-          yield state.copyWith(
-            isSummitting: true,
-            isSignedInOption: none(),
-          );
-          isRegistered = await _authFacade.registrationEmailPassword(emailAddress: state.emailAddress!, password: state.password!);
-        }
-        yield state.copyWith(
-          isSummitting: false,
-          // isSignedInOption: isSignedIn == null ? none() : some(isSignedIn),
-          isSignedInOption: optionOf(isRegistered),
-          isShowErrorMessages: true,
-        );
-      },
+      //   if (isValidEmailAddress && isValidPassword){
+      //     yield state.copyWith(
+      //       isSubmitting: true,
+      //       isSignedInOption: none(),
+      //     );
+      //     isRegistered = await _authFacade.registrationEmailPassword(emailAddress: state.emailAddress!, password: state.password!);
+      //   }
+      //   yield state.copyWith(
+      //     isSubmitting: false,
+      //     // isSignedInOption: isSignedIn == null ? none() : some(isSignedIn),
+      //     isSignedInOption: optionOf(isRegistered),
+      //     isShowErrorMessages: true,
+      //   );
+      // },
       signInEmailPasswordPressed: (e) async* {
         final isValidEmailAddress = state.emailAddress!.isValid();
-        final isValidPassword = state.password!.isValid();
+        final isValidPassword = state.password!.isNotEmpty;
         Either<AuthFailure, Unit>? isSignedIn;
 
         if (isValidEmailAddress && isValidPassword){
           yield state.copyWith(
-            isSummitting: true,
+            isSubmitting: true,
             isSignedInOption: none(),
           );
           isSignedIn = await _authFacade.signInEmailPassword(emailAddress: state.emailAddress!, password: state.password!);
         }
         yield state.copyWith(
-          isSummitting: false,
+          isSubmitting: false,
           // isSignedInOption: isSignedIn == null ? none() : some(isSignedIn),
           isSignedInOption: optionOf(isSignedIn),
           isShowErrorMessages: true,
@@ -78,34 +78,34 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
       },
       signInGooglePressed: (e) async* {
         yield state.copyWith(
-          isSummitting: true,
+          isSubmitting: true,
           isSignedInOption: none(),
         );
         final isSignedIn = await _authFacade.signInGoogle();
         yield state.copyWith(
-          isSummitting: false,
+          isSubmitting: false,
           isSignedInOption: some(isSignedIn),
         );
       },
       signInFacebookPressed: (e) async* {
         yield state.copyWith(
-          isSummitting: true,
+          isSubmitting: true,
           isSignedInOption: none(),
         );
         final isSignedIn = await _authFacade.signInFacebook();
         yield state.copyWith(
-          isSummitting: false,
+          isSubmitting: false,
           isSignedInOption: some(isSignedIn),
         );
       },
       signInStravaPressed: (e) async* {
         yield state.copyWith(
-          isSummitting: true,
+          isSubmitting: true,
           isSignedInOption: none(),
         );
         final isSignedIn = await _authFacade.signInGoogle();
         yield state.copyWith(
-          isSummitting: false,
+          isSubmitting: false,
           isSignedInOption: some(isSignedIn),
         );
       },

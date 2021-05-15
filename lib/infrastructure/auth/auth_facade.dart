@@ -41,11 +41,11 @@ class AuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> signInEmailPassword(
-      {EmailAddress? emailAddress, Password? password}) async {
+      {EmailAddress? emailAddress, String? password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: emailAddress!.getValueOrError(),
-          password: password!.getValueOrError());
+          password: password!);
       return right(unit);
     } on FirebaseAuthException catch (_) {
       return left(const AuthFailure.serverError());

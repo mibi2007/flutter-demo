@@ -28,7 +28,7 @@ class SignInForm extends StatelessWidget {
                 ),
               ).show(context);
             },
-            (_) => {}, 
+            (_) => {},
           ),
         );
       },
@@ -54,38 +54,34 @@ class SignInForm extends StatelessWidget {
                 onChanged: (emailStr) => context
                     .read<SignInFormBloc>()
                     .add(SignInFormEvent.emailChanged(emailStr as String)),
-                validator: 'Validator',
-                /* validator: (emailStr) => context
+                validator: (emailStr) => context
                     .read<SignInFormBloc>()
                     .state
-                    .emailAddress
+                    .emailAddress!
                     .value
                     .fold(
                       (f) => f.maybeMap(
-                        invalidEmail: (_) => "Invalid Email",
+                        invalidEmail: (e) => e.reason,
                         orElse: () => null,
                       ),
                       (_) => null,
-                    ), */
+                    ),
               ),
               SizedBox(height: Utils.dpOf(context, 3)),
               TextInput(
-                suffixIcon: const Icon(Icons.remove_red_eye_outlined,
-                    color: AppColors.primary),
-                hintText: 'Mật khẩu',
-                autoCorrect: false,
-                obscureText: true,
-                onChanged: (passwordStr) => context.read<SignInFormBloc>().add(
-                    SignInFormEvent.passwordChanged(passwordStr as String)),
-                validator: 'Validator',
-                /* validator: (passwordStr) =>
-                    context.read<SignInFormBloc>().state.password.value.fold(
-                          (f) => f.maybeMap(
-                              shortText: (_) => "Short Password",
-                              orElse: () => null),
-                          (_) => null,
-                        ), */
-              ),
+                  suffixIcon: const Icon(Icons.remove_red_eye_outlined,
+                      color: AppColors.primary),
+                  hintText: 'Mật khẩu',
+                  autoCorrect: false,
+                  obscureText: true,
+                  onChanged: (passwordStr) => context
+                      .read<SignInFormBloc>()
+                      .add(SignInFormEvent.passwordChanged(
+                          passwordStr as String)),
+                  validator: (passwordStr) =>
+                      context.read<SignInFormBloc>().state.password!.isEmpty
+                          ? 'Invalid password'
+                          : ''),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -149,7 +145,7 @@ class SignInForm extends StatelessWidget {
                 text: 'Logout',
               ),
               const SizedBox(height: 8),
-              if (state.isSummitting!) ...[
+              if (state.isSubmitting!) ...[
                 const SizedBox(height: 8),
                 const LinearProgressIndicator()
               ]

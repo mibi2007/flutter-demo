@@ -16,22 +16,25 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ValueFailureTearOff {
   const _$ValueFailureTearOff();
 
-  InvalidEmail<T> invalidEmail<T>({T? failedValue}) {
+  InvalidEmail<T> invalidEmail<T>({T? failedValue, String? reason}) {
     return InvalidEmail<T>(
       failedValue: failedValue,
+      reason: reason,
     );
   }
 
-  ShortText<T> shortText<T>({T? failedValue, int? minLength}) {
+  ShortText<T> shortText<T>({T? failedValue, int? minLength, String? reason}) {
     return ShortText<T>(
       failedValue: failedValue,
       minLength: minLength,
+      reason: reason,
     );
   }
 
-  EmptyValue<T> emptyValue<T>({T? failedValue}) {
+  EmptyValue<T> emptyValue<T>({T? failedValue, String? reason}) {
     return EmptyValue<T>(
       failedValue: failedValue,
+      reason: reason,
     );
   }
 
@@ -65,9 +68,10 @@ mixin _$ValueFailure<T> {
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
@@ -75,9 +79,9 @@ mixin _$ValueFailure<T> {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,
@@ -148,7 +152,7 @@ abstract class $InvalidEmailCopyWith<T, $Res>
           InvalidEmail<T> value, $Res Function(InvalidEmail<T>) then) =
       _$InvalidEmailCopyWithImpl<T, $Res>;
   @override
-  $Res call({T? failedValue});
+  $Res call({T? failedValue, String? reason});
 }
 
 /// @nodoc
@@ -165,26 +169,33 @@ class _$InvalidEmailCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? failedValue = freezed,
+    Object? reason = freezed,
   }) {
     return _then(InvalidEmail<T>(
       failedValue: failedValue == freezed
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T?,
+      reason: reason == freezed
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 class _$InvalidEmail<T> implements InvalidEmail<T> {
-  const _$InvalidEmail({this.failedValue});
+  const _$InvalidEmail({this.failedValue, this.reason});
 
   @override
   final T? failedValue;
+  @override
+  final String? reason;
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.invalidEmail(failedValue: $failedValue)';
+    return 'ValueFailure<$T>.invalidEmail(failedValue: $failedValue, reason: $reason)';
   }
 
   @override
@@ -193,12 +204,16 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
         (other is InvalidEmail<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)));
+                    .equals(other.failedValue, failedValue)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failedValue) ^
+      const DeepCollectionEquality().hash(reason);
 
   @JsonKey(ignore: true)
   @override
@@ -208,29 +223,30 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
-    return invalidEmail(failedValue);
+    return invalidEmail(failedValue, reason);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,
     required TResult orElse(),
   }) {
     if (invalidEmail != null) {
-      return invalidEmail(failedValue);
+      return invalidEmail(failedValue, reason);
     }
     return orElse();
   }
@@ -267,10 +283,12 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 }
 
 abstract class InvalidEmail<T> implements ValueFailure<T> {
-  const factory InvalidEmail({T? failedValue}) = _$InvalidEmail<T>;
+  const factory InvalidEmail({T? failedValue, String? reason}) =
+      _$InvalidEmail<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
+  String? get reason => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $InvalidEmailCopyWith<T, InvalidEmail<T>> get copyWith =>
@@ -284,7 +302,7 @@ abstract class $ShortTextCopyWith<T, $Res>
           ShortText<T> value, $Res Function(ShortText<T>) then) =
       _$ShortTextCopyWithImpl<T, $Res>;
   @override
-  $Res call({T? failedValue, int? minLength});
+  $Res call({T? failedValue, int? minLength, String? reason});
 }
 
 /// @nodoc
@@ -302,6 +320,7 @@ class _$ShortTextCopyWithImpl<T, $Res>
   $Res call({
     Object? failedValue = freezed,
     Object? minLength = freezed,
+    Object? reason = freezed,
   }) {
     return _then(ShortText<T>(
       failedValue: failedValue == freezed
@@ -312,22 +331,28 @@ class _$ShortTextCopyWithImpl<T, $Res>
           ? _value.minLength
           : minLength // ignore: cast_nullable_to_non_nullable
               as int?,
+      reason: reason == freezed
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 class _$ShortText<T> implements ShortText<T> {
-  const _$ShortText({this.failedValue, this.minLength});
+  const _$ShortText({this.failedValue, this.minLength, this.reason});
 
   @override
   final T? failedValue;
   @override
   final int? minLength;
+  @override
+  final String? reason;
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.shortText(failedValue: $failedValue, minLength: $minLength)';
+    return 'ValueFailure<$T>.shortText(failedValue: $failedValue, minLength: $minLength, reason: $reason)';
   }
 
   @override
@@ -339,14 +364,17 @@ class _$ShortText<T> implements ShortText<T> {
                     .equals(other.failedValue, failedValue)) &&
             (identical(other.minLength, minLength) ||
                 const DeepCollectionEquality()
-                    .equals(other.minLength, minLength)));
+                    .equals(other.minLength, minLength)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(failedValue) ^
-      const DeepCollectionEquality().hash(minLength);
+      const DeepCollectionEquality().hash(minLength) ^
+      const DeepCollectionEquality().hash(reason);
 
   @JsonKey(ignore: true)
   @override
@@ -356,29 +384,30 @@ class _$ShortText<T> implements ShortText<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
-    return shortText(failedValue, minLength);
+    return shortText(failedValue, minLength, reason);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,
     required TResult orElse(),
   }) {
     if (shortText != null) {
-      return shortText(failedValue, minLength);
+      return shortText(failedValue, minLength, reason);
     }
     return orElse();
   }
@@ -415,11 +444,13 @@ class _$ShortText<T> implements ShortText<T> {
 }
 
 abstract class ShortText<T> implements ValueFailure<T> {
-  const factory ShortText({T? failedValue, int? minLength}) = _$ShortText<T>;
+  const factory ShortText({T? failedValue, int? minLength, String? reason}) =
+      _$ShortText<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
   int? get minLength => throw _privateConstructorUsedError;
+  String? get reason => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $ShortTextCopyWith<T, ShortText<T>> get copyWith =>
@@ -433,7 +464,7 @@ abstract class $EmptyValueCopyWith<T, $Res>
           EmptyValue<T> value, $Res Function(EmptyValue<T>) then) =
       _$EmptyValueCopyWithImpl<T, $Res>;
   @override
-  $Res call({T? failedValue});
+  $Res call({T? failedValue, String? reason});
 }
 
 /// @nodoc
@@ -450,26 +481,33 @@ class _$EmptyValueCopyWithImpl<T, $Res>
   @override
   $Res call({
     Object? failedValue = freezed,
+    Object? reason = freezed,
   }) {
     return _then(EmptyValue<T>(
       failedValue: failedValue == freezed
           ? _value.failedValue
           : failedValue // ignore: cast_nullable_to_non_nullable
               as T?,
+      reason: reason == freezed
+          ? _value.reason
+          : reason // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 class _$EmptyValue<T> implements EmptyValue<T> {
-  const _$EmptyValue({this.failedValue});
+  const _$EmptyValue({this.failedValue, this.reason});
 
   @override
   final T? failedValue;
+  @override
+  final String? reason;
 
   @override
   String toString() {
-    return 'ValueFailure<$T>.emptyValue(failedValue: $failedValue)';
+    return 'ValueFailure<$T>.emptyValue(failedValue: $failedValue, reason: $reason)';
   }
 
   @override
@@ -478,12 +516,16 @@ class _$EmptyValue<T> implements EmptyValue<T> {
         (other is EmptyValue<T> &&
             (identical(other.failedValue, failedValue) ||
                 const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)));
+                    .equals(other.failedValue, failedValue)) &&
+            (identical(other.reason, reason) ||
+                const DeepCollectionEquality().equals(other.reason, reason)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(failedValue) ^
+      const DeepCollectionEquality().hash(reason);
 
   @JsonKey(ignore: true)
   @override
@@ -493,29 +535,30 @@ class _$EmptyValue<T> implements EmptyValue<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
-    return emptyValue(failedValue);
+    return emptyValue(failedValue, reason);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,
     required TResult orElse(),
   }) {
     if (emptyValue != null) {
-      return emptyValue(failedValue);
+      return emptyValue(failedValue, reason);
     }
     return orElse();
   }
@@ -552,10 +595,11 @@ class _$EmptyValue<T> implements EmptyValue<T> {
 }
 
 abstract class EmptyValue<T> implements ValueFailure<T> {
-  const factory EmptyValue({T? failedValue}) = _$EmptyValue<T>;
+  const factory EmptyValue({T? failedValue, String? reason}) = _$EmptyValue<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
+  String? get reason => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   $EmptyValueCopyWith<T, EmptyValue<T>> get copyWith =>
@@ -629,9 +673,10 @@ class _$Multilines<T> implements Multilines<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
@@ -642,9 +687,9 @@ class _$Multilines<T> implements Multilines<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,
@@ -776,9 +821,10 @@ class _$LongText<T> implements LongText<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
@@ -789,9 +835,9 @@ class _$LongText<T> implements LongText<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,
@@ -924,9 +970,10 @@ class _$LongList<T> implements LongList<T> {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(T? failedValue) invalidEmail,
-    required TResult Function(T? failedValue, int? minLength) shortText,
-    required TResult Function(T? failedValue) emptyValue,
+    required TResult Function(T? failedValue, String? reason) invalidEmail,
+    required TResult Function(T? failedValue, int? minLength, String? reason)
+        shortText,
+    required TResult Function(T? failedValue, String? reason) emptyValue,
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
@@ -937,9 +984,9 @@ class _$LongList<T> implements LongList<T> {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(T? failedValue)? invalidEmail,
-    TResult Function(T? failedValue, int? minLength)? shortText,
-    TResult Function(T? failedValue)? emptyValue,
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
     TResult Function(T? failedValue)? multilines,
     TResult Function(T? failedValue, int? maxLength)? longText,
     TResult Function(T? failedValue, int? maxLength)? longList,

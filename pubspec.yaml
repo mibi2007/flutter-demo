@@ -33,7 +33,7 @@ dependencies:
   flutter_hooks: ^0.16.0
   freezed_annotation: ^0.14.1
   google_sign_in: ^5.0.1
-  hooks_riverpod: ^0.14.0+1
+  hooks_riverpod: ^0.14.0+3
   injectable: ^1.2.2
 
 dev_dependencies:

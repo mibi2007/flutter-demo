@@ -14,7 +14,7 @@ abstract class IAuthFacade {
   Future<Either<AuthFailure, Unit>> signInFacebook();
   Future<Either<AuthFailure, Unit>> signInEmailPassword({
     @required EmailAddress emailAddress,
-    @required Password password,
+    @required String password,
   });
   Future<void> signOut();
 }

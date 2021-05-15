@@ -7,7 +7,7 @@ Either<ValueFailure<String>, String> validateEmailAddress(String input) {
   if (RegExp(emailRegex).hasMatch(input)) {
     return right(input);
   } else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
+    return left(ValueFailure.invalidEmail(failedValue: input, reason: 'Invalid Email'));
   }
 }
 
@@ -17,7 +17,7 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
     return right(input);
   } else {
     return left(
-        ValueFailure.shortText(failedValue: input, minLength: minLength));
+        ValueFailure.shortText(failedValue: input, minLength: minLength, reason: 'The text is too short'));
   }
 }
 
@@ -35,7 +35,7 @@ Either<ValueFailure<String>, String> validateEmptyString(String input) {
   if (input.isNotEmpty) {
     return right(input);
   } else {
-    return left(ValueFailure.emptyValue(failedValue: input));
+    return left(ValueFailure.emptyValue(failedValue: input, reason: 'Empty string'));
   }
 }
 

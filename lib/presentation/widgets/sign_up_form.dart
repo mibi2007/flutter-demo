@@ -39,40 +39,39 @@ class SignUpForm extends HookWidget {
                   .read(signUpFormNotifierProvider.notifier)
                   .emailChanged(emailStr as String);
             },
-            // validator: 'Validator',
-            validator: (_) => notifierProvider
-              .state
-              .maybeWhen(
-              (emailAddress) => {
-                emailAddress!
+            validator: (_) => useProvider(signUpFormNotifierProvider)
+                .emailAddress!
                 .value
                 .fold(
                   (f) => f.maybeMap(
-                    invalidEmail: (_) => "Invalid Email",
-                    orElse: () => null,
+                    invalidEmail: (e) => e.reason,
+                    orElse: () => '',
                   ),
-                  (_) => null,
-                )
-              },
-            ),
+                  (_) => '',
+                ),
           ),
           SizedBox(height: Utils.dpOf(context, 3)),
-          const TextInput(
+          TextInput(
             suffixIcon:
                 Icon(Icons.remove_red_eye_outlined, color: AppColors.primary),
             hintText: 'Mật khẩu',
             autoCorrect: false,
             obscureText: true,
-            // onChanged: (passwordStr) => context
-            //     .read<SignUpFormBloc>()
-            //     .add(SignUpFormEvent.passwordChanged(passwordStr)),
-            // validator: (passwordStr) =>
-            //     context.read<SignUpFormBloc>().state.password.value.fold(
-            //           (f) => f.maybeMap(
-            //               shortText: (_) => "Short Password",
-            //               orElse: () => null),
-            //           (_) => null,
-            //         ),
+            onChanged: (password) {
+              BuildContextX(context)
+                  .read(signUpFormNotifierProvider.notifier)
+                  .passwordChanged(password as String);
+            },
+            validator: (_) => useProvider(signUpFormNotifierProvider)
+                .password!
+                .value
+                .fold(
+                  (f) => f.maybeMap(
+                    shortText: (_) => 'Invalid password',
+                    orElse: () => '',
+                  ),
+                  (_) => '',
+                ),
           ),
           const SizedBox(height: 8),
           Row(
