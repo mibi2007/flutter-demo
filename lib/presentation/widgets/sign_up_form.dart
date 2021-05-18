@@ -18,9 +18,9 @@ class SignUpForm extends HookWidget {
     return Form(
       key: _formKey,
       autovalidateMode:
-          context.read(signUpFormNotifierProvider).shouldshowErrorMessages!
+          useProvider(signUpFormNotifierProvider).shouldshowErrorMessages!
               ? AutovalidateMode.onUserInteraction
-              : AutovalidateMode.onUserInteraction,
+              : AutovalidateMode.disabled,
       child: ListView(
         padding: EdgeInsets.all(Utils.dpOf(context, 3)),
         children: <Widget>[
@@ -82,12 +82,12 @@ class SignUpForm extends HookWidget {
               Expanded(
                 child: PrimaryButton(
                   onPressed: () {
-                    if (_formKey.currentState != null &&
+                    /* if (_formKey.currentState != null &&
                         _formKey.currentState!.validate()) {
                       // BuildContextX(context)
                       //   .read(signUpFormNotifierProvider.notifier)
                       //   .registerEmailPasswordPressed();
-                    }
+                    } */
                   },
                   text: 'Đăng ký',
                 ),
