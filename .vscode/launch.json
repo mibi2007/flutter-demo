@@ -5,9 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "demo",
+            "name": "dev",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "env": "dev",
+            "program": "lib/main-dev.dart"
+        },
+        {
+            "name": "dev",
+            "request": "launch",
+            "type": "dart",
+            "env": "production",
+            "program": "lib/main-prod.dart"
         }
     ]
 }

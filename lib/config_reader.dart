@@ -14,13 +14,22 @@ mixin ConfigReader {
     return strava['clientId'] as int;
   }
 
-  static Map<String, String> _getStrava() {
-    return _config!['strava'] as Map<String, String>;
+  static Map<String, dynamic> _getStrava() {
+    return _config!['strava'] as Map<String, dynamic>;
   }
 
-  static String? getStravaAppSecretKey() {
+  static Map<String, dynamic> _getFacebook() {
+    return _config!['facebook'] as Map<String, dynamic>;
+  }
+
+  static String getStravaAppSecretKey() {
     final strava = _getStrava();
     return strava['secret'];
+  }
+
+  static String getFacebookAppID(){
+    final facebook = _getFacebook();
+    return facebook['appID'];
   }
 }
 

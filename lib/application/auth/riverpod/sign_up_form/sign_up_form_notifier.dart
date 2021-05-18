@@ -27,7 +27,7 @@ class SignUpFormNotifier extends StateNotifier<SignUpFormState> {
     );
   }
 
-  Future<void> registerEmailPasswordPressed(e) async {
+  Future<void> registerEmailPasswordPressed() async {
     Either<AuthFailure, Unit>? failureOrSuccess;
 
     final isEmailValid = state.emailAddress!.isValid();

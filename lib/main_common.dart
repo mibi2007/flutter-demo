@@ -28,7 +28,7 @@ Future<void> mainCommon(String env) async {
 
   if (kIsWeb) {
     FacebookAuth.instance.webInitialize(
-      appId: '253190239781194',
+      appId: ConfigReader.getFacebookAppID(),
       cookie: true,
       xfbml: true,
       version: 'v9.0',

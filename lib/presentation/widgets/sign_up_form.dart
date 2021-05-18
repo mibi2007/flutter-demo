@@ -13,16 +13,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class SignUpForm extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    var _isShowErrorMessages = false;
-    final notifierProvider = useProvider(signUpFormNotifierProvider.notifier);
-    return FormField(
-      //key: _formKey,
-      autovalidateMode: _isShowErrorMessages
-          ? AutovalidateMode.always
-          : AutovalidateMode.disabled,
-      builder: (_) => ListView(
-        padding: const EdgeInsets.all(10),
-        children: [
+    final _formKey = GlobalKey<FormState>();
+    // final formState = useProvider(signUpFormNotifierProvider);
+    return Form(
+      key: _formKey,
+      autovalidateMode:
+          context.read(signUpFormNotifierProvider).shouldshowErrorMessages!
+              ? AutovalidateMode.onUserInteraction
+              : AutovalidateMode.onUserInteraction,
+      child: ListView(
+        padding: EdgeInsets.all(Utils.dpOf(context, 3)),
+        children: <Widget>[
           Hero(
             tag: 'imageHero',
             child: Image.asset(
@@ -30,25 +31,28 @@ class SignUpForm extends HookWidget {
               height: Utils.dpOf(context, 25),
             ),
           ),
-          SizedBox(height: Utils.dpOf(context, 10)),
+          SizedBox(height: Utils.dpOf(context, 5)),
           TextInput(
             hintText: 'Email đăng nhập',
             autoCorrect: true,
             onChanged: (emailStr) {
-              BuildContextX(context)
+              context
                   .read(signUpFormNotifierProvider.notifier)
-                  .emailChanged(emailStr as String);
+                  .emailChanged(emailStr);
             },
-            validator: (_) => useProvider(signUpFormNotifierProvider)
-                .emailAddress!
-                .value
-                .fold(
-                  (f) => f.maybeMap(
-                    invalidEmail: (e) => e.reason,
-                    orElse: () => '',
-                  ),
-                  (_) => '',
-                ),
+            validator: (_) {
+              return context
+                  .read(signUpFormNotifierProvider)
+                  .emailAddress!
+                  .value
+                  .fold(
+                    (f) => f.maybeMap(
+                      invalidEmail: (e) => e.reason,
+                      orElse: () => null,
+                    ),
+                    (_) => null,
+                  );
+            },
           ),
           SizedBox(height: Utils.dpOf(context, 3)),
           TextInput(
@@ -60,18 +64,16 @@ class SignUpForm extends HookWidget {
             onChanged: (password) {
               BuildContextX(context)
                   .read(signUpFormNotifierProvider.notifier)
-                  .passwordChanged(password as String);
+                  .passwordChanged(password);
             },
-            validator: (_) => useProvider(signUpFormNotifierProvider)
-                .password!
-                .value
-                .fold(
-                  (f) => f.maybeMap(
-                    shortText: (_) => 'Invalid password',
-                    orElse: () => '',
-                  ),
-                  (_) => '',
-                ),
+            validator: (_) =>
+                context.read(signUpFormNotifierProvider).password!.value.fold(
+                      (f) => f.maybeMap(
+                        shortText: (_) => 'Invalid password',
+                        orElse: () => null,
+                      ),
+                      (_) => null,
+                    ),
           ),
           const SizedBox(height: 8),
           Row(
@@ -80,9 +82,12 @@ class SignUpForm extends HookWidget {
               Expanded(
                 child: PrimaryButton(
                   onPressed: () {
-                    //_formKey.currentState.validate();
-                    // context.read<SignUpFormBloc>().add(const SignUpFormEvent
-                    //     .registerEmailPasswordPressed());
+                    if (_formKey.currentState != null &&
+                        _formKey.currentState!.validate()) {
+                      // BuildContextX(context)
+                      //   .read(signUpFormNotifierProvider.notifier)
+                      //   .registerEmailPasswordPressed();
+                    }
                   },
                   text: 'Đăng ký',
                 ),

@@ -13,6 +13,7 @@ import 'package:demo/presentation/widgets/common/text_input.dart';
 class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
         state.isSignedInOption!.fold(
@@ -26,6 +27,7 @@ class SignInForm extends StatelessWidget {
                   emailAlreadyUsed: (_) => 'Email is used',
                   invalidEmailPassword: (_) => 'Invalid Username/Password',
                 ),
+                duration: const Duration(seconds: 3),
               ).show(context);
             },
             (_) => {},
@@ -33,12 +35,13 @@ class SignInForm extends StatelessWidget {
         );
       },
       builder: (context, state) {
-        return FormField(
+        return Form(
+          key: _formKey,
           autovalidateMode: state.isShowErrorMessages!
-              ? AutovalidateMode.always
+              ? AutovalidateMode.onUserInteraction
               : AutovalidateMode.disabled,
-          builder: (_) => ListView(
-            padding: const EdgeInsets.all(10),
+          child: ListView(
+            padding: EdgeInsets.all(Utils.dpOf(context, 3)),
             children: [
               Hero(
                 tag: 'imageHero',
@@ -47,13 +50,13 @@ class SignInForm extends StatelessWidget {
                   height: Utils.dpOf(context, 40),
                 ),
               ),
-              SizedBox(height: Utils.dpOf(context, 10)),
+              SizedBox(height: Utils.dpOf(context, 5)),
               TextInput(
                 hintText: 'Email đăng nhập',
                 autoCorrect: true,
                 onChanged: (emailStr) => context
                     .read<SignInFormBloc>()
-                    .add(SignInFormEvent.emailChanged(emailStr as String)),
+                    .add(SignInFormEvent.emailChanged(emailStr)),
                 validator: (emailStr) => context
                     .read<SignInFormBloc>()
                     .state
@@ -76,12 +79,11 @@ class SignInForm extends StatelessWidget {
                   obscureText: true,
                   onChanged: (passwordStr) => context
                       .read<SignInFormBloc>()
-                      .add(SignInFormEvent.passwordChanged(
-                          passwordStr as String)),
+                      .add(SignInFormEvent.passwordChanged(passwordStr)),
                   validator: (passwordStr) =>
                       context.read<SignInFormBloc>().state.password!.isEmpty
                           ? 'Invalid password'
-                          : ''),
+                          : null),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

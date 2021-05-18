@@ -4,16 +4,18 @@ import 'package:demo/presentation/core/utilities.dart';
 class TextInput extends StatelessWidget {
   final Widget? suffixIcon;
   final String? hintText;
-  final bool? autoCorrect;
+  final AutovalidateMode? autovalidateMode;
   final bool? obscureText;
+  final bool? autoCorrect;
   final String? Function(String?)? validator;
-  final Function? onChanged;
+  final Function(String)? onChanged;
 
   const TextInput({
     this.suffixIcon,
     this.hintText,
-    this.autoCorrect,
+    this.autovalidateMode,
     this.obscureText = false,
+    this.autoCorrect,
     this.validator,
     this.onChanged,
   });
@@ -21,6 +23,7 @@ class TextInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      autovalidateMode: autovalidateMode,
       decoration: InputDecoration(
         hintText: hintText,
         suffixIcon: suffixIcon,
@@ -38,7 +41,7 @@ class TextInput extends StatelessWidget {
       ),
       autocorrect: false,
       obscureText: obscureText!,
-      onChanged: (_) => onChanged,
+      onChanged: onChanged,
       validator: validator,
     );
   }

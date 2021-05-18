@@ -34,8 +34,13 @@ class AuthFacade implements IAuthFacade {
           email: emailAddress!.getValueOrError(),
           password: password!.getValueOrError());
       return right(unit);
-    } on FirebaseAuthException catch (_) {
-      return left(const AuthFailure.serverError());
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'email-already-exists':
+          return left(const AuthFailure.emailAlreadyUsed());
+        default:
+          return left(const AuthFailure.serverError());
+      }
     }
   }
 
@@ -47,8 +52,13 @@ class AuthFacade implements IAuthFacade {
           email: emailAddress!.getValueOrError(),
           password: password!);
       return right(unit);
-    } on FirebaseAuthException catch (_) {
-      return left(const AuthFailure.serverError());
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'user-not-found':
+          return left(const AuthFailure.invalidEmailPassword());
+        default:
+          return left(const AuthFailure.serverError());
+      }
     }
   }
 
