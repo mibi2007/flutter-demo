@@ -9,15 +9,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AppWidget extends StatelessWidget {
   final String env;
 
-  AppWidget(this.env);
+  const AppWidget(this.env, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Color? primaryColor;
+    final Color primaryColor;
     switch (env) {
       case Environment.dev:
         primaryColor = Colors.green[800]!;
         break;
       case Environment.prod:
+        primaryColor = Colors.red;
+        break;
+      default:
         primaryColor = Colors.red;
         break;
     }
@@ -31,7 +34,6 @@ class AppWidget extends StatelessWidget {
         title: 'Demonstration',
         debugShowCheckedModeBanner: false,
         theme: ThemeData.light().copyWith(
-          // primaryColor: primaryColor,
           inputDecorationTheme: InputDecorationTheme(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),
@@ -39,7 +41,7 @@ class AppWidget extends StatelessWidget {
           ),
           // colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.blueAccent),
           useMaterial3: true,
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.red, brightness: Brightness.light),
+          colorScheme: ColorScheme.fromSeed(seedColor: primaryColor, brightness: Brightness.light),
         ),
         routeInformationParser: router.routeInformationParser,
         routerDelegate: router.routerDelegate,

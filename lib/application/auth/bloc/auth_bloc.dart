@@ -19,9 +19,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthState get initialState => const AuthState.initial();
 
   @override
-  Stream<AuthState> mapEventToState(
+  Stream<AuthState> onEvent(
     AuthEvent event,
   ) async* {
+    super.onEvent(event);
+
     yield* event.map(
       authCheckRequested: (e) async* {
         final userOption = await _authFacade.getSignInUser();
