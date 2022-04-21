@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'failures.dart';
 
@@ -10,62 +12,11 @@ part of 'failures.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ValueFailureTearOff {
-  const _$ValueFailureTearOff();
-
-  InvalidEmail<T> invalidEmail<T>({T? failedValue, String? reason}) {
-    return InvalidEmail<T>(
-      failedValue: failedValue,
-      reason: reason,
-    );
-  }
-
-  ShortText<T> shortText<T>({T? failedValue, int? minLength, String? reason}) {
-    return ShortText<T>(
-      failedValue: failedValue,
-      minLength: minLength,
-      reason: reason,
-    );
-  }
-
-  EmptyValue<T> emptyValue<T>({T? failedValue, String? reason}) {
-    return EmptyValue<T>(
-      failedValue: failedValue,
-      reason: reason,
-    );
-  }
-
-  Multilines<T> multilines<T>({T? failedValue}) {
-    return Multilines<T>(
-      failedValue: failedValue,
-    );
-  }
-
-  LongText<T> longText<T>({T? failedValue, int? maxLength}) {
-    return LongText<T>(
-      failedValue: failedValue,
-      maxLength: maxLength,
-    );
-  }
-
-  LongList<T> longList<T>({T? failedValue, int? maxLength}) {
-    return LongList<T>(
-      failedValue: failedValue,
-      maxLength: maxLength,
-    );
-  }
-}
-
-/// @nodoc
-const $ValueFailure = _$ValueFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ValueFailure<T> {
   T? get failedValue => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(T? failedValue, String? reason) invalidEmail,
@@ -75,6 +26,16 @@ mixin _$ValueFailure<T> {
     required TResult Function(T? failedValue) multilines,
     required TResult Function(T? failedValue, int? maxLength) longText,
     required TResult Function(T? failedValue, int? maxLength) longList,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -96,6 +57,16 @@ mixin _$ValueFailure<T> {
     required TResult Function(Multilines<T> value) multilines,
     required TResult Function(LongText<T> value) longText,
     required TResult Function(LongList<T> value) longList,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -185,6 +156,7 @@ class _$InvalidEmailCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$InvalidEmail<T> implements InvalidEmail<T> {
   const _$InvalidEmail({this.failedValue, this.reason});
 
@@ -201,19 +173,18 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is InvalidEmail<T> &&
-            (identical(other.failedValue, failedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)) &&
-            (identical(other.reason, reason) ||
-                const DeepCollectionEquality().equals(other.reason, reason)));
+        (other.runtimeType == runtimeType &&
+            other is InvalidEmail<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.reason, reason));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failedValue) ^
-      const DeepCollectionEquality().hash(reason);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(reason));
 
   @JsonKey(ignore: true)
   @override
@@ -232,6 +203,19 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
     return invalidEmail(failedValue, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
+  }) {
+    return invalidEmail?.call(failedValue, reason);
   }
 
   @override
@@ -266,6 +250,19 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
+  }) {
+    return invalidEmail?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortText<T> value)? shortText,
@@ -283,7 +280,7 @@ class _$InvalidEmail<T> implements InvalidEmail<T> {
 }
 
 abstract class InvalidEmail<T> implements ValueFailure<T> {
-  const factory InvalidEmail({T? failedValue, String? reason}) =
+  const factory InvalidEmail({final T? failedValue, final String? reason}) =
       _$InvalidEmail<T>;
 
   @override
@@ -340,6 +337,7 @@ class _$ShortTextCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$ShortText<T> implements ShortText<T> {
   const _$ShortText({this.failedValue, this.minLength, this.reason});
 
@@ -358,23 +356,20 @@ class _$ShortText<T> implements ShortText<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ShortText<T> &&
-            (identical(other.failedValue, failedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)) &&
-            (identical(other.minLength, minLength) ||
-                const DeepCollectionEquality()
-                    .equals(other.minLength, minLength)) &&
-            (identical(other.reason, reason) ||
-                const DeepCollectionEquality().equals(other.reason, reason)));
+        (other.runtimeType == runtimeType &&
+            other is ShortText<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.minLength, minLength) &&
+            const DeepCollectionEquality().equals(other.reason, reason));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failedValue) ^
-      const DeepCollectionEquality().hash(minLength) ^
-      const DeepCollectionEquality().hash(reason);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(minLength),
+      const DeepCollectionEquality().hash(reason));
 
   @JsonKey(ignore: true)
   @override
@@ -393,6 +388,19 @@ class _$ShortText<T> implements ShortText<T> {
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
     return shortText(failedValue, minLength, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
+  }) {
+    return shortText?.call(failedValue, minLength, reason);
   }
 
   @override
@@ -427,6 +435,19 @@ class _$ShortText<T> implements ShortText<T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
+  }) {
+    return shortText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortText<T> value)? shortText,
@@ -444,8 +465,10 @@ class _$ShortText<T> implements ShortText<T> {
 }
 
 abstract class ShortText<T> implements ValueFailure<T> {
-  const factory ShortText({T? failedValue, int? minLength, String? reason}) =
-      _$ShortText<T>;
+  const factory ShortText(
+      {final T? failedValue,
+      final int? minLength,
+      final String? reason}) = _$ShortText<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
@@ -497,6 +520,7 @@ class _$EmptyValueCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$EmptyValue<T> implements EmptyValue<T> {
   const _$EmptyValue({this.failedValue, this.reason});
 
@@ -513,19 +537,18 @@ class _$EmptyValue<T> implements EmptyValue<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is EmptyValue<T> &&
-            (identical(other.failedValue, failedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)) &&
-            (identical(other.reason, reason) ||
-                const DeepCollectionEquality().equals(other.reason, reason)));
+        (other.runtimeType == runtimeType &&
+            other is EmptyValue<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.reason, reason));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failedValue) ^
-      const DeepCollectionEquality().hash(reason);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(reason));
 
   @JsonKey(ignore: true)
   @override
@@ -544,6 +567,19 @@ class _$EmptyValue<T> implements EmptyValue<T> {
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
     return emptyValue(failedValue, reason);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
+  }) {
+    return emptyValue?.call(failedValue, reason);
   }
 
   @override
@@ -578,6 +614,19 @@ class _$EmptyValue<T> implements EmptyValue<T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
+  }) {
+    return emptyValue?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortText<T> value)? shortText,
@@ -595,7 +644,8 @@ class _$EmptyValue<T> implements EmptyValue<T> {
 }
 
 abstract class EmptyValue<T> implements ValueFailure<T> {
-  const factory EmptyValue({T? failedValue, String? reason}) = _$EmptyValue<T>;
+  const factory EmptyValue({final T? failedValue, final String? reason}) =
+      _$EmptyValue<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
@@ -641,6 +691,7 @@ class _$MultilinesCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$Multilines<T> implements Multilines<T> {
   const _$Multilines({this.failedValue});
 
@@ -655,15 +706,15 @@ class _$Multilines<T> implements Multilines<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is Multilines<T> &&
-            (identical(other.failedValue, failedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)));
+        (other.runtimeType == runtimeType &&
+            other is Multilines<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(failedValue);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(failedValue));
 
   @JsonKey(ignore: true)
   @override
@@ -682,6 +733,19 @@ class _$Multilines<T> implements Multilines<T> {
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
     return multilines(failedValue);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
+  }) {
+    return multilines?.call(failedValue);
   }
 
   @override
@@ -716,6 +780,19 @@ class _$Multilines<T> implements Multilines<T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
+  }) {
+    return multilines?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortText<T> value)? shortText,
@@ -733,7 +810,7 @@ class _$Multilines<T> implements Multilines<T> {
 }
 
 abstract class Multilines<T> implements ValueFailure<T> {
-  const factory Multilines({T? failedValue}) = _$Multilines<T>;
+  const factory Multilines({final T? failedValue}) = _$Multilines<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
@@ -782,6 +859,7 @@ class _$LongTextCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$LongText<T> implements LongText<T> {
   const _$LongText({this.failedValue, this.maxLength});
 
@@ -798,20 +876,18 @@ class _$LongText<T> implements LongText<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is LongText<T> &&
-            (identical(other.failedValue, failedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)) &&
-            (identical(other.maxLength, maxLength) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxLength, maxLength)));
+        (other.runtimeType == runtimeType &&
+            other is LongText<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.maxLength, maxLength));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failedValue) ^
-      const DeepCollectionEquality().hash(maxLength);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(maxLength));
 
   @JsonKey(ignore: true)
   @override
@@ -830,6 +906,19 @@ class _$LongText<T> implements LongText<T> {
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
     return longText(failedValue, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
+  }) {
+    return longText?.call(failedValue, maxLength);
   }
 
   @override
@@ -864,6 +953,19 @@ class _$LongText<T> implements LongText<T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
+  }) {
+    return longText?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortText<T> value)? shortText,
@@ -881,7 +983,8 @@ class _$LongText<T> implements LongText<T> {
 }
 
 abstract class LongText<T> implements ValueFailure<T> {
-  const factory LongText({T? failedValue, int? maxLength}) = _$LongText<T>;
+  const factory LongText({final T? failedValue, final int? maxLength}) =
+      _$LongText<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;
@@ -931,6 +1034,7 @@ class _$LongListCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$LongList<T> implements LongList<T> {
   const _$LongList({this.failedValue, this.maxLength});
 
@@ -947,20 +1051,18 @@ class _$LongList<T> implements LongList<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is LongList<T> &&
-            (identical(other.failedValue, failedValue) ||
-                const DeepCollectionEquality()
-                    .equals(other.failedValue, failedValue)) &&
-            (identical(other.maxLength, maxLength) ||
-                const DeepCollectionEquality()
-                    .equals(other.maxLength, maxLength)));
+        (other.runtimeType == runtimeType &&
+            other is LongList<T> &&
+            const DeepCollectionEquality()
+                .equals(other.failedValue, failedValue) &&
+            const DeepCollectionEquality().equals(other.maxLength, maxLength));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(failedValue) ^
-      const DeepCollectionEquality().hash(maxLength);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(failedValue),
+      const DeepCollectionEquality().hash(maxLength));
 
   @JsonKey(ignore: true)
   @override
@@ -979,6 +1081,19 @@ class _$LongList<T> implements LongList<T> {
     required TResult Function(T? failedValue, int? maxLength) longList,
   }) {
     return longList(failedValue, maxLength);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(T? failedValue, String? reason)? invalidEmail,
+    TResult Function(T? failedValue, int? minLength, String? reason)? shortText,
+    TResult Function(T? failedValue, String? reason)? emptyValue,
+    TResult Function(T? failedValue)? multilines,
+    TResult Function(T? failedValue, int? maxLength)? longText,
+    TResult Function(T? failedValue, int? maxLength)? longList,
+  }) {
+    return longList?.call(failedValue, maxLength);
   }
 
   @override
@@ -1013,6 +1128,19 @@ class _$LongList<T> implements LongList<T> {
 
   @override
   @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InvalidEmail<T> value)? invalidEmail,
+    TResult Function(ShortText<T> value)? shortText,
+    TResult Function(EmptyValue<T> value)? emptyValue,
+    TResult Function(Multilines<T> value)? multilines,
+    TResult Function(LongText<T> value)? longText,
+    TResult Function(LongList<T> value)? longList,
+  }) {
+    return longList?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InvalidEmail<T> value)? invalidEmail,
     TResult Function(ShortText<T> value)? shortText,
@@ -1030,7 +1158,8 @@ class _$LongList<T> implements LongList<T> {
 }
 
 abstract class LongList<T> implements ValueFailure<T> {
-  const factory LongList({T? failedValue, int? maxLength}) = _$LongList<T>;
+  const factory LongList({final T? failedValue, final int? maxLength}) =
+      _$LongList<T>;
 
   @override
   T? get failedValue => throw _privateConstructorUsedError;

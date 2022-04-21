@@ -1,13 +1,14 @@
-import 'package:dartz/dartz.dart';
+import 'package:demo/domain/auth/auth_failures.dart';
+import 'package:demo/domain/auth/i_auth_facade.dart';
+import 'package:demo/domain/auth/user.dart';
+import 'package:demo/domain/auth/value_objects.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
-import 'package:demo/domain/auth/auth_failures.dart';
-import 'package:demo/domain/auth/i_auth_facade.dart';
-import 'package:demo/domain/auth/value_objects.dart';
-import 'package:demo/domain/auth/user.dart';
+
 import './firebase_auth_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -23,16 +24,13 @@ class AuthFacade implements IAuthFacade {
   );
 
   @override
-  Future<Option<User>> getSignInUser() async =>
-      optionOf(_firebaseAuth.currentUser?.toDomain());
+  Future<Option<User>> getSignInUser() async => optionOf(_firebaseAuth.currentUser?.toDomain());
 
   @override
-  Future<Either<AuthFailure, Unit>> registrationEmailPassword(
-      {EmailAddress? emailAddress, Password? password}) async {
+  Future<Either<AuthFailure, Unit>> registrationEmailPassword({EmailAddress? emailAddress, Password? password}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
-          email: emailAddress!.getValueOrError(),
-          password: password!.getValueOrError());
+          email: emailAddress!.getValueOrError(), password: password!.getValueOrError());
       return right(unit);
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -45,12 +43,9 @@ class AuthFacade implements IAuthFacade {
   }
 
   @override
-  Future<Either<AuthFailure, Unit>> signInEmailPassword(
-      {EmailAddress? emailAddress, String? password}) async {
+  Future<Either<AuthFailure, Unit>> signInEmailPassword({EmailAddress? emailAddress, String? password}) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
-          email: emailAddress!.getValueOrError(),
-          password: password!);
+      await _firebaseAuth.signInWithEmailAndPassword(email: emailAddress!.getValueOrError(), password: password!);
       return right(unit);
     } on FirebaseAuthException catch (e) {
       switch (e.code) {
@@ -68,8 +63,7 @@ class AuthFacade implements IAuthFacade {
       final LoginResult? loginResult = await _facebookAuth.login();
       print(loginResult!.status);
       if (loginResult.status == LoginStatus.success) {
-        final facebookAuthCredential =
-            FacebookAuthProvider.credential(loginResult.accessToken!.token);
+        final facebookAuthCredential = FacebookAuthProvider.credential(loginResult.accessToken!.token);
         await _firebaseAuth.signInWithCredential(facebookAuthCredential);
         return right(unit);
       } else if (loginResult.status == LoginStatus.cancelled) {

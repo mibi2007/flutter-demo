@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'sign_up_form_notifier.dart';
 
@@ -10,30 +12,7 @@ part of 'sign_up_form_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SignUpFormStateTearOff {
-  const _$SignUpFormStateTearOff();
-
-  _SignUpFormState call(
-      {EmailAddress? emailAddress,
-      Password? password,
-      bool? isSubmitting,
-      bool? shouldshowErrorMessages,
-      Option<Either<AuthFailure, Unit>>? registerFailureOrSuccessOption}) {
-    return _SignUpFormState(
-      emailAddress: emailAddress,
-      password: password,
-      isSubmitting: isSubmitting,
-      shouldshowErrorMessages: shouldshowErrorMessages,
-      registerFailureOrSuccessOption: registerFailureOrSuccessOption,
-    );
-  }
-}
-
-/// @nodoc
-const $SignUpFormState = _$SignUpFormStateTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SignUpFormState {
@@ -164,6 +143,7 @@ class __$SignUpFormStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_SignUpFormState implements _SignUpFormState {
   const _$_SignUpFormState(
       {this.emailAddress,
@@ -191,35 +171,28 @@ class _$_SignUpFormState implements _SignUpFormState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is _SignUpFormState &&
-            (identical(other.emailAddress, emailAddress) ||
-                const DeepCollectionEquality()
-                    .equals(other.emailAddress, emailAddress)) &&
-            (identical(other.password, password) ||
-                const DeepCollectionEquality()
-                    .equals(other.password, password)) &&
-            (identical(other.isSubmitting, isSubmitting) ||
-                const DeepCollectionEquality()
-                    .equals(other.isSubmitting, isSubmitting)) &&
-            (identical(
-                    other.shouldshowErrorMessages, shouldshowErrorMessages) ||
-                const DeepCollectionEquality().equals(
-                    other.shouldshowErrorMessages, shouldshowErrorMessages)) &&
-            (identical(other.registerFailureOrSuccessOption,
-                    registerFailureOrSuccessOption) ||
-                const DeepCollectionEquality().equals(
-                    other.registerFailureOrSuccessOption,
-                    registerFailureOrSuccessOption)));
+        (other.runtimeType == runtimeType &&
+            other is _SignUpFormState &&
+            const DeepCollectionEquality()
+                .equals(other.emailAddress, emailAddress) &&
+            const DeepCollectionEquality().equals(other.password, password) &&
+            const DeepCollectionEquality()
+                .equals(other.isSubmitting, isSubmitting) &&
+            const DeepCollectionEquality().equals(
+                other.shouldshowErrorMessages, shouldshowErrorMessages) &&
+            const DeepCollectionEquality().equals(
+                other.registerFailureOrSuccessOption,
+                registerFailureOrSuccessOption));
   }
 
   @override
-  int get hashCode =>
-      runtimeType.hashCode ^
-      const DeepCollectionEquality().hash(emailAddress) ^
-      const DeepCollectionEquality().hash(password) ^
-      const DeepCollectionEquality().hash(isSubmitting) ^
-      const DeepCollectionEquality().hash(shouldshowErrorMessages) ^
-      const DeepCollectionEquality().hash(registerFailureOrSuccessOption);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(emailAddress),
+      const DeepCollectionEquality().hash(password),
+      const DeepCollectionEquality().hash(isSubmitting),
+      const DeepCollectionEquality().hash(shouldshowErrorMessages),
+      const DeepCollectionEquality().hash(registerFailureOrSuccessOption));
 
   @JsonKey(ignore: true)
   @override
@@ -229,12 +202,12 @@ class _$_SignUpFormState implements _SignUpFormState {
 
 abstract class _SignUpFormState implements SignUpFormState {
   const factory _SignUpFormState(
-          {EmailAddress? emailAddress,
-          Password? password,
-          bool? isSubmitting,
-          bool? shouldshowErrorMessages,
-          Option<Either<AuthFailure, Unit>>? registerFailureOrSuccessOption}) =
-      _$_SignUpFormState;
+      {final EmailAddress? emailAddress,
+      final Password? password,
+      final bool? isSubmitting,
+      final bool? shouldshowErrorMessages,
+      final Option<Either<AuthFailure, Unit>>?
+          registerFailureOrSuccessOption}) = _$_SignUpFormState;
 
   @override
   EmailAddress? get emailAddress => throw _privateConstructorUsedError;

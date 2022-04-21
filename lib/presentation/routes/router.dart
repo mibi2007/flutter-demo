@@ -1,29 +1,42 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:demo/presentation/pages/home_page.dart';
 import 'package:demo/presentation/pages/sign_in_page.dart';
-import 'package:demo/presentation/pages/sign_up_page.dart';
-import 'package:demo/presentation/pages/splash_page.dart';
+import 'package:demo/presentation/routes/auth_guard.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-import 'auth_guard.dart';
+class AppPath {
+  static const home = '/home';
+  static const signIn = '/sign-in';
+  static const signOut = '/sign-out';
+}
 
-@MaterialAutoRouter(
-    generateNavigationHelperExtension: true,
-    replaceInRouteName: 'Page,Route',
-    routes: <AutoRoute>[
-      AutoRoute(
-        path: '/',
-      page: HomePage,
-      guards: [AuthGuard],
-      usesTabsRouter: true,
-      children: [
-        
-      ],),
-      MaterialRoute(page: SplashPage, initial: true),
-      CustomRoute<bool>(
-        page: SignUpPage,
-        transitionsBuilder: TransitionsBuilders.slideLeft,
+GoRouter router = GoRouter(
+  routes: <GoRoute>[
+    GoRoute(
+      path: AppPath.home,
+      builder: (BuildContext context, GoRouterState state) => HomePage(),
+    ),
+    GoRoute(
+      path: AppPath.signIn,
+      pageBuilder: (BuildContext context, GoRouterState state) => CustomTransitionPage(
+        key: state.pageKey,
+        child: const SignInPage(),
+        transitionsBuilder: _slideTransitionBuilder(),
       ),
-      AutoRoute(path: '/login', page: SignInPage, fullscreenDialog: false),
-      RedirectRoute(path: '*', redirectTo: '/'),
-    ])
-class $AppRouter {}
+    ),
+  ],
+  redirect: guard,
+  debugLogDiagnostics: true,
+);
+
+_slideTransitionBuilder() =>
+    (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) =>
+        SlideTransition(
+          position: animation.drive(
+            Tween<Offset>(
+              begin: const Offset(0.25, 0.25),
+              end: Offset.zero,
+            ).chain(CurveTween(curve: Curves.easeIn)),
+          ),
+          child: child,
+        );

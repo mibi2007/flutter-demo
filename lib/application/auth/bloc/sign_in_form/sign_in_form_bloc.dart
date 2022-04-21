@@ -1,17 +1,16 @@
 import 'dart:async';
-import 'package:dartz/dartz.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:bloc/bloc.dart';
-import 'package:injectable/injectable.dart';
-import 'package:meta/meta.dart';
 import 'package:demo/domain/auth/auth_failures.dart';
 import 'package:demo/domain/auth/i_auth_facade.dart';
 import 'package:demo/domain/auth/value_objects.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
+part 'sign_in_form_bloc.freezed.dart';
 part 'sign_in_form_event.dart';
 part 'sign_in_form_state.dart';
-part 'sign_in_form_bloc.freezed.dart';
 
 @injectable
 class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
@@ -62,12 +61,13 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         final isValidPassword = state.password!.isNotEmpty;
         Either<AuthFailure, Unit>? isSignedIn;
 
-        if (isValidEmailAddress && isValidPassword){
+        if (isValidEmailAddress && isValidPassword) {
           yield state.copyWith(
             isSubmitting: true,
             isSignedInOption: none(),
           );
-          isSignedIn = await _authFacade.signInEmailPassword(emailAddress: state.emailAddress!, password: state.password!);
+          isSignedIn =
+              await _authFacade.signInEmailPassword(emailAddress: state.emailAddress!, password: state.password!);
         }
         yield state.copyWith(
           isSubmitting: false,

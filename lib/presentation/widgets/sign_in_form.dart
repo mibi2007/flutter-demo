@@ -1,14 +1,12 @@
-import 'package:another_flushbar/flushbar_helper.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:demo/application/auth/bloc/sign_in_form/sign_in_form_bloc.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:demo/presentation/core/colors.dart';
 import 'package:demo/presentation/core/utilities.dart';
-import 'package:demo/presentation/routes/router.gr.dart';
 import 'package:demo/presentation/widgets/common/app_outline_button.dart';
 import 'package:demo/presentation/widgets/common/primary_button.dart';
 import 'package:demo/presentation/widgets/common/text_input.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fpdart/fpdart.dart';
 
 class SignInForm extends StatelessWidget {
   @override
@@ -16,19 +14,22 @@ class SignInForm extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<SignInFormBloc, SignInFormState>(
       listener: (context, state) {
-        state.isSignedInOption!.fold(
-          () {},
+        state.isSignedInOption!.foldMap(
+          Monoid.instance('', (_, __) => Container()),
           (either) => either.fold(
             (failure) {
-              FlushbarHelper.createError(
-                message: failure.map(
-                  cancelByUser: (_) => 'Cancelled',
-                  serverError: (_) => 'Server Error',
-                  emailAlreadyUsed: (_) => 'Email is used',
-                  invalidEmailPassword: (_) => 'Invalid Username/Password',
+              return ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    failure.map(
+                      cancelByUser: (_) => 'Cancelled',
+                      serverError: (_) => 'Server Error',
+                      emailAlreadyUsed: (_) => 'Email is used',
+                      invalidEmailPassword: (_) => 'Invalid Username/Password',
+                    ),
+                  ),
                 ),
-                duration: const Duration(seconds: 3),
-              ).show(context);
+              );
             },
             (_) => {},
           ),
@@ -37,9 +38,7 @@ class SignInForm extends StatelessWidget {
       builder: (context, state) {
         return Form(
           key: _formKey,
-          autovalidateMode: state.isShowErrorMessages!
-              ? AutovalidateMode.onUserInteraction
-              : AutovalidateMode.disabled,
+          autovalidateMode: state.isShowErrorMessages! ? AutovalidateMode.onUserInteraction : AutovalidateMode.disabled,
           child: ListView(
             padding: EdgeInsets.all(Utils.dpOf(context, 3)),
             children: [
@@ -54,15 +53,8 @@ class SignInForm extends StatelessWidget {
               TextInput(
                 hintText: 'Email đăng nhập',
                 autoCorrect: true,
-                onChanged: (emailStr) => context
-                    .read<SignInFormBloc>()
-                    .add(SignInFormEvent.emailChanged(emailStr)),
-                validator: (emailStr) => context
-                    .read<SignInFormBloc>()
-                    .state
-                    .emailAddress!
-                    .value
-                    .fold(
+                onChanged: (emailStr) => context.read<SignInFormBloc>().add(SignInFormEvent.emailChanged(emailStr)),
+                validator: (emailStr) => context.read<SignInFormBloc>().state.emailAddress!.value.fold(
                       (f) => f.maybeMap(
                         invalidEmail: (e) => e.reason,
                         orElse: () => null,
@@ -72,18 +64,14 @@ class SignInForm extends StatelessWidget {
               ),
               SizedBox(height: Utils.dpOf(context, 3)),
               TextInput(
-                  suffixIcon: const Icon(Icons.remove_red_eye_outlined,
-                      color: AppColors.primary),
+                  suffixIcon: const Icon(Icons.remove_red_eye_outlined, color: AppColors.primary),
                   hintText: 'Mật khẩu',
                   autoCorrect: false,
                   obscureText: true,
-                  onChanged: (passwordStr) => context
-                      .read<SignInFormBloc>()
-                      .add(SignInFormEvent.passwordChanged(passwordStr)),
+                  onChanged: (passwordStr) =>
+                      context.read<SignInFormBloc>().add(SignInFormEvent.passwordChanged(passwordStr)),
                   validator: (passwordStr) =>
-                      context.read<SignInFormBloc>().state.password!.isEmpty
-                          ? 'Invalid password'
-                          : null),
+                      context.read<SignInFormBloc>().state.password!.isEmpty ? 'Invalid password' : null),
               const SizedBox(height: 8),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -91,8 +79,7 @@ class SignInForm extends StatelessWidget {
                   Expanded(
                     child: PrimaryButton(
                       onPressed: () {
-                        context.read<SignInFormBloc>().add(
-                            const SignInFormEvent.signInEmailPasswordPressed());
+                        context.read<SignInFormBloc>().add(const SignInFormEvent.signInEmailPasswordPressed());
                       },
                       text: 'Đăng nhập',
                     ),
@@ -101,9 +88,8 @@ class SignInForm extends StatelessWidget {
                   Expanded(
                     child: PrimaryButton(
                       onPressed: () {
-                        AutoRouter.of(context).replace(SignUpRoute());
-                        // context.read<SignInFormBloc>().add(const SignInFormEvent
-                        //     .registerEmailPasswordPressed());
+                        // AutoRouter.of(context).replace(SignUpRoute());
+                        context.read<SignInFormBloc>().add(const SignInFormEvent.signInEmailPasswordPressed());
                       },
                       text: 'Đăng ký',
                     ),
@@ -113,44 +99,33 @@ class SignInForm extends StatelessWidget {
               const SizedBox(height: 8),
               AppOutlineButton(
                 onPressed: () {
-                  context
-                      .read<SignInFormBloc>()
-                      .add(const SignInFormEvent.signInFacebookPressed());
+                  context.read<SignInFormBloc>().add(const SignInFormEvent.signInFacebookPressed());
                 },
                 text: 'Đăng nhập bằng Facebook',
               ),
               const SizedBox(height: 8),
               AppOutlineButton(
                 onPressed: () {
-                  context
-                      .read<SignInFormBloc>()
-                      .add(const SignInFormEvent.signInGooglePressed());
+                  context.read<SignInFormBloc>().add(const SignInFormEvent.signInGooglePressed());
                 },
                 text: 'Đăng nhập bằng Google',
               ),
               const SizedBox(height: 8),
               AppOutlineButton(
                 onPressed: () {
-                  context
-                      .read<SignInFormBloc>()
-                      .add(const SignInFormEvent.signInStravaPressed());
+                  context.read<SignInFormBloc>().add(const SignInFormEvent.signInStravaPressed());
                 },
                 text: 'Đăng nhập bằng Strava',
               ),
               const SizedBox(height: 8),
               AppOutlineButton(
                 onPressed: () {
-                  context
-                      .read<SignInFormBloc>()
-                      .add(const SignInFormEvent.signInStravaPressed());
+                  context.read<SignInFormBloc>().add(const SignInFormEvent.signInStravaPressed());
                 },
                 text: 'Logout',
               ),
               const SizedBox(height: 8),
-              if (state.isSubmitting!) ...[
-                const SizedBox(height: 8),
-                const LinearProgressIndicator()
-              ]
+              if (state.isSubmitting!) ...[const SizedBox(height: 8), const LinearProgressIndicator()]
             ],
           ),
         );

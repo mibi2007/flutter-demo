@@ -1,8 +1,8 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter/material.dart';
 import 'package:demo/domain/auth/auth_failures.dart';
 import 'package:demo/domain/auth/user.dart';
 import 'package:demo/domain/auth/value_objects.dart';
+import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart';
 
 abstract class IAuthFacade {
   Future<Option<User>> getSignInUser();

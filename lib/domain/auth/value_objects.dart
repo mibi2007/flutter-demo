@@ -1,7 +1,7 @@
-import 'package:dartz/dartz.dart';
 import 'package:demo/domain/core/failures.dart';
 import 'package:demo/domain/core/value_objects.dart';
 import 'package:demo/domain/core/value_validators.dart';
+import 'package:fpdart/fpdart.dart';
 
 class EmailAddress extends ValueObject<String> {
   @override

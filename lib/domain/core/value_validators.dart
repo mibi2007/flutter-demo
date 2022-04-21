@@ -1,9 +1,8 @@
-import 'package:dartz/dartz.dart';
 import 'package:demo/domain/core/failures.dart';
+import 'package:fpdart/fpdart.dart';
 
 Either<ValueFailure<String>, String> validateEmailAddress(String input) {
-  const emailRegex =
-      r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
+  const emailRegex = r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
   if (RegExp(emailRegex).hasMatch(input)) {
     return right(input);
   } else {
@@ -16,18 +15,15 @@ Either<ValueFailure<String>, String> validatePassword(String input) {
   if (input.length >= minLength) {
     return right(input);
   } else {
-    return left(
-        ValueFailure.shortText(failedValue: input, minLength: minLength, reason: 'The text is too short'));
+    return left(ValueFailure.shortText(failedValue: input, minLength: minLength, reason: 'The text is too short'));
   }
 }
 
-Either<ValueFailure<String>, String> validateMaxLengthString(
-    String input, int maxLength) {
+Either<ValueFailure<String>, String> validateMaxLengthString(String input, int maxLength) {
   if (input.length <= maxLength) {
     return right(input);
   } else {
-    return left(
-        ValueFailure.longText(failedValue: input, maxLength: maxLength));
+    return left(ValueFailure.longText(failedValue: input, maxLength: maxLength));
   }
 }
 

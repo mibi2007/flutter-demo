@@ -1,5 +1,7 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: type=lint
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'auth_failures.dart';
 
@@ -10,31 +12,7 @@ part of 'auth_failures.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$AuthFailureTearOff {
-  const _$AuthFailureTearOff();
-
-  CancelByUser<T> cancelByUser<T>() {
-    return CancelByUser<T>();
-  }
-
-  ServerError<T> serverError<T>() {
-    return ServerError<T>();
-  }
-
-  EmailAlreadyUsed<T> emailAlreadyUsed<T>() {
-    return EmailAlreadyUsed<T>();
-  }
-
-  InvalidEmailPassword<T> invalidEmailPassword<T>() {
-    return InvalidEmailPassword<T>();
-  }
-}
-
-/// @nodoc
-const $AuthFailure = _$AuthFailureTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$AuthFailure<T> {
@@ -44,6 +22,14 @@ mixin _$AuthFailure<T> {
     required TResult Function() serverError,
     required TResult Function() emailAlreadyUsed,
     required TResult Function() invalidEmailPassword,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyUsed,
+    TResult Function()? invalidEmailPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +48,14 @@ mixin _$AuthFailure<T> {
     required TResult Function(EmailAlreadyUsed<T> value) emailAlreadyUsed,
     required TResult Function(InvalidEmailPassword<T> value)
         invalidEmailPassword,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelByUser<T> value)? cancelByUser,
+    TResult Function(ServerError<T> value)? serverError,
+    TResult Function(EmailAlreadyUsed<T> value)? emailAlreadyUsed,
+    TResult Function(InvalidEmailPassword<T> value)? invalidEmailPassword,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -112,6 +106,7 @@ class _$CancelByUserCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$CancelByUser<T> implements CancelByUser<T> {
   const _$CancelByUser();
 
@@ -122,7 +117,8 @@ class _$CancelByUser<T> implements CancelByUser<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is CancelByUser<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is CancelByUser<T>);
   }
 
   @override
@@ -137,6 +133,17 @@ class _$CancelByUser<T> implements CancelByUser<T> {
     required TResult Function() invalidEmailPassword,
   }) {
     return cancelByUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyUsed,
+    TResult Function()? invalidEmailPassword,
+  }) {
+    return cancelByUser?.call();
   }
 
   @override
@@ -164,6 +171,17 @@ class _$CancelByUser<T> implements CancelByUser<T> {
         invalidEmailPassword,
   }) {
     return cancelByUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelByUser<T> value)? cancelByUser,
+    TResult Function(ServerError<T> value)? serverError,
+    TResult Function(EmailAlreadyUsed<T> value)? emailAlreadyUsed,
+    TResult Function(InvalidEmailPassword<T> value)? invalidEmailPassword,
+  }) {
+    return cancelByUser?.call(this);
   }
 
   @override
@@ -206,6 +224,7 @@ class _$ServerErrorCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$ServerError<T> implements ServerError<T> {
   const _$ServerError();
 
@@ -216,7 +235,8 @@ class _$ServerError<T> implements ServerError<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is ServerError<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ServerError<T>);
   }
 
   @override
@@ -231,6 +251,17 @@ class _$ServerError<T> implements ServerError<T> {
     required TResult Function() invalidEmailPassword,
   }) {
     return serverError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyUsed,
+    TResult Function()? invalidEmailPassword,
+  }) {
+    return serverError?.call();
   }
 
   @override
@@ -258,6 +289,17 @@ class _$ServerError<T> implements ServerError<T> {
         invalidEmailPassword,
   }) {
     return serverError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelByUser<T> value)? cancelByUser,
+    TResult Function(ServerError<T> value)? serverError,
+    TResult Function(EmailAlreadyUsed<T> value)? emailAlreadyUsed,
+    TResult Function(InvalidEmailPassword<T> value)? invalidEmailPassword,
+  }) {
+    return serverError?.call(this);
   }
 
   @override
@@ -300,6 +342,7 @@ class _$EmailAlreadyUsedCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$EmailAlreadyUsed<T> implements EmailAlreadyUsed<T> {
   const _$EmailAlreadyUsed();
 
@@ -310,7 +353,8 @@ class _$EmailAlreadyUsed<T> implements EmailAlreadyUsed<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is EmailAlreadyUsed<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is EmailAlreadyUsed<T>);
   }
 
   @override
@@ -325,6 +369,17 @@ class _$EmailAlreadyUsed<T> implements EmailAlreadyUsed<T> {
     required TResult Function() invalidEmailPassword,
   }) {
     return emailAlreadyUsed();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyUsed,
+    TResult Function()? invalidEmailPassword,
+  }) {
+    return emailAlreadyUsed?.call();
   }
 
   @override
@@ -352,6 +407,17 @@ class _$EmailAlreadyUsed<T> implements EmailAlreadyUsed<T> {
         invalidEmailPassword,
   }) {
     return emailAlreadyUsed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelByUser<T> value)? cancelByUser,
+    TResult Function(ServerError<T> value)? serverError,
+    TResult Function(EmailAlreadyUsed<T> value)? emailAlreadyUsed,
+    TResult Function(InvalidEmailPassword<T> value)? invalidEmailPassword,
+  }) {
+    return emailAlreadyUsed?.call(this);
   }
 
   @override
@@ -394,6 +460,7 @@ class _$InvalidEmailPasswordCopyWithImpl<T, $Res>
 }
 
 /// @nodoc
+
 class _$InvalidEmailPassword<T> implements InvalidEmailPassword<T> {
   const _$InvalidEmailPassword();
 
@@ -404,7 +471,8 @@ class _$InvalidEmailPassword<T> implements InvalidEmailPassword<T> {
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InvalidEmailPassword<T>);
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is InvalidEmailPassword<T>);
   }
 
   @override
@@ -419,6 +487,17 @@ class _$InvalidEmailPassword<T> implements InvalidEmailPassword<T> {
     required TResult Function() invalidEmailPassword,
   }) {
     return invalidEmailPassword();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? cancelByUser,
+    TResult Function()? serverError,
+    TResult Function()? emailAlreadyUsed,
+    TResult Function()? invalidEmailPassword,
+  }) {
+    return invalidEmailPassword?.call();
   }
 
   @override
@@ -446,6 +525,17 @@ class _$InvalidEmailPassword<T> implements InvalidEmailPassword<T> {
         invalidEmailPassword,
   }) {
     return invalidEmailPassword(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(CancelByUser<T> value)? cancelByUser,
+    TResult Function(ServerError<T> value)? serverError,
+    TResult Function(EmailAlreadyUsed<T> value)? emailAlreadyUsed,
+    TResult Function(InvalidEmailPassword<T> value)? invalidEmailPassword,
+  }) {
+    return invalidEmailPassword?.call(this);
   }
 
   @override
