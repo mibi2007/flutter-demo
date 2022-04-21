@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:demo/presentation/navigations/menu.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
         label: const Text(''),
         onPressed: () {},
         icon: const Icon(Icons.add),
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         // state.showOpenTables ? Theme.of(context).primaryColor : Theme.of(context).accentColor,
       ),
     );
